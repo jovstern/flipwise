@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
+import { e2eMongo } from './e2e/mongo-env'
 
 const isCI = Boolean(process.env.CI)
 const port = 3100
@@ -8,6 +9,7 @@ export default defineConfig({
   forbidOnly: isCI,
   retries: isCI ? 1 : 0,
   reporter: isCI ? 'github' : 'list',
+  globalSetup: './e2e/global-setup.ts',
   use: {
     baseURL: `http://localhost:${port}`,
     // Every run is recorded; the pr-demo skill turns a recording into the PR's demo GIF.
@@ -21,5 +23,6 @@ export default defineConfig({
     url: `http://localhost:${port}`,
     reuseExistingServer: !isCI,
     timeout: 180_000,
+    env: { MONGODB_URI: e2eMongo.uri, MONGODB_DB: e2eMongo.db },
   },
 })
