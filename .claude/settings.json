@@ -1,0 +1,10 @@
+{
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "autoCompactWindow": 200000,
+  "env": {
+    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1",
+    "SUPERPOWERS_DISABLE_TELEMETRY": "1"
+  }
+}
