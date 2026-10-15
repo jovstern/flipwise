@@ -33,6 +33,7 @@ test('studies the whole deck and stores every answer', async ({ page, request })
       return cards.map((card) => card.status)
     })
     .toEqual(expected)
+  await expect(page.getByText('14 known, 6 still learning')).toBeVisible()
 })
 
 test('flipping shows the translation and example in RTL Hebrew', async ({ page }) => {

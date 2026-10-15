@@ -47,8 +47,8 @@ The Vitest config does not change. Route tests use `// @vitest-environment node`
     documents with status `new` and a `createdAt` one second apart in file order, so the order
     is stable. It also exports `resetToSeed(collection)` (delete all, insert the seed) for
     tests.
-  - `scripts/seed.ts` is run by `npm run db:seed` as
-    `node --env-file=.env.local scripts/seed.ts`. It loads `seed.json` itself and inserts only
+  - `scripts/seed.mts` is run by `npm run db:seed` as
+    `node --env-file=.env.local scripts/seed.mts`. It loads `seed.json` itself and inserts only
     if the collection is empty, printing what it did. Node cannot import the `.ts` helper
     without a tsconfig change, so the script repeats the few lines that build the documents.
 - **`.env.example`**: `MONGODB_URI=mongodb://localhost:27017` and `MONGODB_DB=flipwise`.

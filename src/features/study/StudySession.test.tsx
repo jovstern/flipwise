@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Card } from '@/features/words/schema'
@@ -101,6 +101,9 @@ describe('StudySession', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(
       "Couldn't save your answer for שלום.",
     )
+    const word = within(screen.getByRole('alert')).getByText('שלום')
+    expect(word).toHaveAttribute('lang', 'he')
+    expect(word).toHaveAttribute('dir', 'rtl')
     expect(screen.getByText('Card 2 of 2')).toBeInTheDocument()
     expect(refresh).not.toHaveBeenCalled()
   })

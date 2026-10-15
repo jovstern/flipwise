@@ -17,7 +17,7 @@ import {
 export function StudySession({ cards }: { cards: Card[] }) {
   const router = useRouter()
   const [state, dispatch] = useReducer(studyReducer, cards, initStudy)
-  const [saveError, setSaveError] = useState<string | null>(null)
+  const [saveError, setSaveError] = useState<string | null>(null) // word whose save failed
   const answeredId = useRef<string | null>(null) // guards against a double click sending two PUTs
   const card = currentCard(state)
 
@@ -41,13 +41,17 @@ export function StudySession({ cards }: { cards: Card[] }) {
       if (!res.ok) throw new Error(`PUT /api/words/${card.id} returned ${res.status}`)
       router.refresh()
     } catch {
-      setSaveError(`Couldn't save your answer for ${card.word}.`)
+      setSaveError(card.word)
     }
   }
 
   const error = saveError && (
     <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-800">
-      {saveError}
+      Couldn&apos;t save your answer for{' '}
+      <bdi lang="he" dir="rtl">
+        {saveError}
+      </bdi>
+      .
     </p>
   )
 
