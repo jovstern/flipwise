@@ -18,13 +18,30 @@ const example = z
   .trim()
   .min(1, 'Enter an example sentence')
   .max(300, 'Keep the example under 300 characters')
+const exampleTranslation = z
+  .string()
+  .trim()
+  .min(1, 'Enter the example translation')
+  .max(300, 'Keep the example translation under 300 characters')
 
 /** Body of POST /api/words (used from phase 02). */
-export const NewCard = z.object({ word, translation, example, status: Status.default('new') })
+export const NewCard = z.object({
+  word,
+  translation,
+  example,
+  exampleTranslation,
+  status: Status.default('new'),
+})
 export type NewCard = z.infer<typeof NewCard>
 
 /** Body of PUT /api/words/[id]: replaces every editable field. */
-export const CardReplacement = z.object({ word, translation, example, status: Status })
+export const CardReplacement = z.object({
+  word,
+  translation,
+  example,
+  exampleTranslation,
+  status: Status,
+})
 export type CardReplacement = z.infer<typeof CardReplacement>
 
 /** A card as the app and the API see it. */
@@ -33,6 +50,7 @@ export const Card = z.object({
   word: z.string(),
   translation: z.string(),
   example: z.string(),
+  exampleTranslation: z.string(),
   status: Status,
 })
 export type Card = z.infer<typeof Card>

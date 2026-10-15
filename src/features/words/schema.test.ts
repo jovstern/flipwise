@@ -5,6 +5,7 @@ const valid = {
   word: 'שלום',
   translation: 'hello',
   example: 'שלום, מה שלומך?',
+  exampleTranslation: 'Hello, how are you?',
   status: 'known',
 }
 
@@ -14,11 +15,14 @@ describe('CardReplacement', () => {
     expect(parsed).toEqual(valid)
   })
 
-  it.each(['word', 'translation', 'example', 'status'])('requires %s', (field) => {
-    const body: Record<string, unknown> = { ...valid }
-    delete body[field]
-    expect(CardReplacement.safeParse(body).success).toBe(false)
-  })
+  it.each(['word', 'translation', 'example', 'exampleTranslation', 'status'])(
+    'requires %s',
+    (field) => {
+      const body: Record<string, unknown> = { ...valid }
+      delete body[field]
+      expect(CardReplacement.safeParse(body).success).toBe(false)
+    },
+  )
 
   it('rejects whitespace-only text', () => {
     expect(CardReplacement.safeParse({ ...valid, translation: '   ' }).success).toBe(false)
@@ -31,6 +35,9 @@ describe('CardReplacement', () => {
   it('rejects text over the max length', () => {
     expect(CardReplacement.safeParse({ ...valid, word: 'א'.repeat(101) }).success).toBe(false)
     expect(CardReplacement.safeParse({ ...valid, example: 'א'.repeat(301) }).success).toBe(false)
+    expect(
+      CardReplacement.safeParse({ ...valid, exampleTranslation: 'a'.repeat(301) }).success,
+    ).toBe(false)
   })
 
   it('strips unknown keys such as id and createdAt', () => {

@@ -30,6 +30,7 @@ export function StudySession({ cards }: { cards: Card[] }) {
       word: card.word,
       translation: card.translation,
       example: card.example,
+      exampleTranslation: card.exampleTranslation,
       status: result,
     }
     try {

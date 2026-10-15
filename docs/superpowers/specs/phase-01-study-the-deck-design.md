@@ -29,11 +29,11 @@ The Vitest config does not change. Route tests use `// @vitest-environment node`
 - **`src/lib/db.ts`** (`import 'server-only'`): a module-level `MongoClient`, created on first
   use. `getCardsCollection()` reads `MONGODB_URI` and `MONGODB_DB` when called, not at import,
   so tests can point it at `flipwise_test`. Collection `cards`. Exports the `CardDocument` type
-  (`_id: ObjectId`, `word`, `translation`, `example`, `status`, `createdAt: Date`).
+  (`_id: ObjectId`, `word`, `translation`, `example`, `exampleTranslation`, `status`, `createdAt: Date`).
 - **`src/features/words/schema.ts`**: Zod `Status` (`'new' | 'known' | 'learning'`), `Card`
-  (with string `id`), `NewCard` (word, translation and example trimmed, non-empty, with max
-  lengths; status defaults to `new`) and `CardReplacement` (word, translation, example and
-  status, all required). Types come from `z.infer`. `NewCard` is defined now to match the
+  (with string `id`), `NewCard` (word, translation, example and example translation trimmed, non-empty, with max
+  lengths; status defaults to `new`) and `CardReplacement` (word, translation, example, example translation
+  and status, all required). Types come from `z.infer`. `NewCard` is defined now to match the
   project spec; nothing uses it until #2.
 - **`src/features/words/data.ts`** (`import 'server-only'`):
   - `toCard(doc)` maps `_id` to `id` and drops `createdAt`.
@@ -42,7 +42,7 @@ The Vitest config does not change. Route tests use `// @vitest-environment node`
     not a valid ObjectId or matches no card. It keeps `_id` and `createdAt`.
 - **Seed:**
   - `src/features/words/seed.json` holds 20 cards. Each has a Hebrew word, its English
-    translation and a Hebrew example sentence that uses the word.
+    translation, a Hebrew example sentence that uses the word and its English translation.
   - `src/features/words/seed.ts` exports `seedDocuments()`, which turns the JSON into
     documents with status `new` and a `createdAt` one second apart in file order, so the order
     is stable. It also exports `resetToSeed(collection)` (delete all, insert the seed) for
@@ -77,7 +77,7 @@ can call the data functions outside a request.
 - **`src/features/study/StudySession.tsx`** (`'use client'`):
   - Holds the reducer state.
   - On answer it dispatches first, so the next card appears at once, then sends
-    `PUT /api/words/[id]` with the card's word, translation and example and the new status.
+    `PUT /api/words/[id]` with the card's word, translation, example, example translation and the new status.
   - On a 2xx response it calls `router.refresh()`. Otherwise, or on a network error, it shows
     an inline `role="alert"`: "Couldn't save your answer for <word>." The session continues.
   - When finished it renders `StudySummary`. Above the card it shows the position, e.g. "Card 3
@@ -85,7 +85,7 @@ can call the data functions outside a request.
 - **`src/features/study/Flashcard.tsx`** (`'use client'`, presentational):
   - A `<button>` whose accessible name is the Hebrew word plus "show answer" until it is
     flipped.
-  - The front shows the word. The back shows the word, the translation and the example.
+  - The front shows the word. The back shows the word, the translation, the example and the example's English translation.
   - Hebrew text gets `lang="he" dir="rtl"`.
   - The flip is a Tailwind 3D rotation: `perspective`, `transform-3d`, `backface-hidden` and
     `rotate-y-180`.

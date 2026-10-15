@@ -10,8 +10,22 @@ vi.mock('next/navigation', () => ({ useRouter: () => ({ refresh }) }))
 const fetchMock = vi.fn()
 
 const cards: Card[] = [
-  { id: 'a1', word: 'שלום', translation: 'hello', example: 'שלום, מה שלומך?', status: 'new' },
-  { id: 'b2', word: 'ספר', translation: 'book', example: 'קראתי ספר.', status: 'learning' },
+  {
+    id: 'a1',
+    word: 'שלום',
+    translation: 'hello',
+    example: 'שלום, מה שלומך?',
+    exampleTranslation: 'Hello, how are you?',
+    status: 'new',
+  },
+  {
+    id: 'b2',
+    word: 'ספר',
+    translation: 'book',
+    example: 'קראתי ספר.',
+    exampleTranslation: 'I read a book.',
+    status: 'learning',
+  },
 ]
 
 beforeEach(() => {
@@ -41,6 +55,7 @@ describe('StudySession', () => {
 
     expect(screen.getByText('hello')).toBeInTheDocument()
     expect(screen.getByText('שלום, מה שלומך?')).toBeInTheDocument()
+    expect(screen.getByText('Hello, how are you?')).toBeInTheDocument()
     expect(answerButtons().knew).toBeEnabled()
     expect(answerButtons().learning).toBeEnabled()
   })
@@ -72,6 +87,7 @@ describe('StudySession', () => {
       word: 'שלום',
       translation: 'hello',
       example: 'שלום, מה שלומך?',
+      exampleTranslation: 'Hello, how are you?',
       status: 'known',
     })
     await waitFor(() => expect(refresh).toHaveBeenCalledTimes(1))

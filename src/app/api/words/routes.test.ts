@@ -41,6 +41,7 @@ const replacement = {
   word: 'שלום רב',
   translation: 'greetings',
   example: 'שלום רב לכולם.',
+  exampleTranslation: 'Hello to everyone.',
   status: 'known',
 }
 
@@ -85,7 +86,7 @@ describe('PUT /api/words/[id]', () => {
   })
 
   it.each([
-    ['a missing field', { word: 'א', translation: 'a', example: 'א' }],
+    ['a missing field', { word: 'א', translation: 'a', example: 'א', exampleTranslation: 'a' }],
     ['an unknown status', { ...replacement, status: 'mastered' }],
     ['a whitespace-only field', { ...replacement, translation: '   ' }],
   ])('returns 400 with issues for %s', async (_label, body) => {

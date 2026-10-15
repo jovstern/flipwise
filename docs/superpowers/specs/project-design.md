@@ -38,16 +38,16 @@ the UI.
 MongoDB `flipwise.cards` (official `mongodb` driver, no Mongoose):
 
 ```
-{ _id: ObjectId, word: string, translation: string, example: string,
+{ _id: ObjectId, word: string, translation: string, example: string, exampleTranslation: string,
   status: 'new' | 'known' | 'learning', createdAt: Date }
 ```
 
-- `word` and `example` are Hebrew; `translation` is English.
+- `word` and `example` are Hebrew; `translation` and `exampleTranslation` are English.
 - The data layer maps `_id` → string `id`. Nothing outside `src/features/words/data.ts` and
   `src/lib/db.ts` sees an `ObjectId`.
 - Zod schemas in `src/features/words/schema.ts`: `Card` (with `id`), `NewCard`
-  (word, translation, example: trimmed, non-empty, max lengths; status defaults to `new`),
-  `CardReplacement` (word, translation, example, status, all required, for PUT).
+  (word, translation, example, exampleTranslation: trimmed, non-empty, max lengths; status defaults to `new`),
+  `CardReplacement` (word, translation, example, exampleTranslation, status, all required, for PUT).
   Types come from `z.infer`.
 
 **Connection:** `src/lib/db.ts` (`import 'server-only'`) creates one module-level
@@ -69,7 +69,7 @@ is empty. Tests use `MONGODB_DB=flipwise_test`, reset to the seed before each su
 | POST | `/api/words` | `NewCard` | 201 `Card` | 400 invalid body |
 | PUT | `/api/words/[id]` | `CardReplacement` | 200 `Card` | 400 invalid body, 404 unknown or malformed id |
 
-PUT replaces all editable fields (word, translation, example, status); `id` and `createdAt`
+PUT replaces all editable fields (word, translation, example, exampleTranslation, status); `id` and `createdAt`
 are kept. Error bodies: `{ error: string, issues?: ZodIssue[] }`.
 
 ## Main flows
@@ -82,7 +82,7 @@ are kept. Error bodies: `{ error: string, issues?: ZodIssue[] }`.
    `{ queue: Card[], index, flipped, results: Record<id, 'known' | 'learning'> }`.
    Known/learning counts are derived from `results`, not stored.
 3. `Flashcard` is a `<button>` showing the Hebrew word; click, tap, Space or Enter flips it
-   to show translation + example (CSS 3D transition; plain swap under
+   to show translation + example and its English translation (CSS 3D transition; plain swap under
    `prefers-reduced-motion`). Hebrew text has `lang="he" dir="rtl"`.
 4. "I knew it" / "Still learning" (enabled once flipped) record the result, advance at once,
    and send `PUT /api/words/[id]` with the full card and the new status. On failure, show an
@@ -93,7 +93,7 @@ are kept. Error bodies: `{ error: string, issues?: ZodIssue[] }`.
 
 ### Deck (`/deck`)
 
-1. The page reads all cards and renders a responsive grid: word (RTL), translation, example,
+1. The page reads all cards and renders a responsive grid: word (RTL), translation, example (RTL) and its English translation,
    status badge (New / Known / Learning).
 2. "Add card" form (TanStack Form + Zod `NewCard`, the same schema as POST): Hebrew inputs
    use `dir="auto"`. On submit, `POST /api/words`; on success reset the form and

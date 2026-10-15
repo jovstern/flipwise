@@ -13,6 +13,7 @@ describe('toCard', () => {
       word: 'ספר',
       translation: 'book',
       example: 'קראתי ספר.',
+      exampleTranslation: 'I read a book.',
       status: 'learning',
       createdAt: new Date(),
     })
@@ -21,6 +22,7 @@ describe('toCard', () => {
       word: 'ספר',
       translation: 'book',
       example: 'קראתי ספר.',
+      exampleTranslation: 'I read a book.',
       status: 'learning',
     })
   })
@@ -32,6 +34,7 @@ describe('toCard', () => {
         word: 'ספר',
         translation: 'book',
         example: 'קראתי ספר.',
+        exampleTranslation: 'I read a book.',
         // @ts-expect-error -- simulates a corrupt stored document
         status: 'mastered',
         createdAt: new Date(),

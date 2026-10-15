@@ -39,11 +39,12 @@ test('studies the whole deck and stores every answer', async ({ page, request })
 test('flipping shows the translation and example in RTL Hebrew', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: /show answer/i }).click()
-  await expect(page.getByText('hello')).toBeVisible()
+  await expect(page.getByText('hello', { exact: true })).toBeVisible()
   const example = page.getByText('שלום, מה שלומך היום?')
   await expect(example).toBeVisible()
   await expect(example).toHaveAttribute('dir', 'rtl')
   await expect(example).toHaveAttribute('lang', 'he')
+  await expect(page.getByText('Hello, how are you today?')).toBeVisible()
 })
 
 test('the header nav links Study and Deck', async ({ page }) => {

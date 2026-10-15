@@ -5,8 +5,22 @@ import { Card, type CardReplacement } from './schema'
 
 const OBJECT_ID = /^[0-9a-f]{24}$/i
 
-export function toCard({ _id, word, translation, example, status }: WithId<CardDocument>): Card {
-  return Card.parse({ id: _id.toHexString(), word, translation, example, status })
+export function toCard({
+  _id,
+  word,
+  translation,
+  example,
+  exampleTranslation,
+  status,
+}: WithId<CardDocument>): Card {
+  return Card.parse({
+    id: _id.toHexString(),
+    word,
+    translation,
+    example,
+    exampleTranslation,
+    status,
+  })
 }
 
 /** All cards, oldest first. */

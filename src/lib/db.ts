@@ -7,6 +7,7 @@ export type CardDocument = {
   word: string
   translation: string
   example: string
+  exampleTranslation: string
   status: Status
   createdAt: Date
 }

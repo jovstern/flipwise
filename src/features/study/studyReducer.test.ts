@@ -3,8 +3,22 @@ import type { Card } from '@/features/words/schema'
 import { countResults, currentCard, initStudy, isFinished, studyReducer } from './studyReducer'
 
 const cards: Card[] = [
-  { id: 'a', word: 'שלום', translation: 'hello', example: 'שלום לך.', status: 'new' },
-  { id: 'b', word: 'ספר', translation: 'book', example: 'קראתי ספר.', status: 'known' },
+  {
+    id: 'a',
+    word: 'שלום',
+    translation: 'hello',
+    example: 'שלום לך.',
+    exampleTranslation: 'Hello to you.',
+    status: 'new',
+  },
+  {
+    id: 'b',
+    word: 'ספר',
+    translation: 'book',
+    example: 'קראתי ספר.',
+    exampleTranslation: 'I read a book.',
+    status: 'known',
+  },
 ]
 
 describe('studyReducer', () => {

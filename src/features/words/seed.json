@@ -1,22 +1,122 @@
 [
-  { "word": "שלום", "translation": "hello", "example": "שלום, מה שלומך היום?" },
-  { "word": "ספר", "translation": "book", "example": "קראתי ספר מעניין בשבוע שעבר." },
-  { "word": "בית", "translation": "house", "example": "הבית שלנו נמצא ליד הים." },
-  { "word": "מים", "translation": "water", "example": "אני שותה הרבה מים בקיץ." },
-  { "word": "חבר", "translation": "friend", "example": "הוא החבר הכי טוב שלי." },
-  { "word": "עבודה", "translation": "work", "example": "אני נוסע לעבודה ברכבת." },
-  { "word": "אוכל", "translation": "food", "example": "האוכל במסעדה הזאת טעים מאוד." },
-  { "word": "זמן", "translation": "time", "example": "אין לי זמן לראות טלוויזיה." },
-  { "word": "משפחה", "translation": "family", "example": "כל המשפחה נפגשת ביום שישי בערב." },
-  { "word": "עיר", "translation": "city", "example": "תל אביב היא עיר שלא ישנה." },
-  { "word": "שמש", "translation": "sun", "example": "השמש זורחת מוקדם בבוקר." },
-  { "word": "לחם", "translation": "bread", "example": "קניתי לחם טרי במאפייה." },
-  { "word": "ילד", "translation": "child", "example": "הילד משחק בגינה." },
-  { "word": "רחוב", "translation": "street", "example": "הרחוב הזה שקט בלילה." },
-  { "word": "שאלה", "translation": "question", "example": "יש לי שאלה על השיעור." },
-  { "word": "תשובה", "translation": "answer", "example": "המורה נתנה תשובה ברורה." },
-  { "word": "מחר", "translation": "tomorrow", "example": "נתראה מחר בבוקר." },
-  { "word": "אהבה", "translation": "love", "example": "השיר הזה מדבר על אהבה." },
-  { "word": "חלון", "translation": "window", "example": "תפתח את החלון, חם פה." },
-  { "word": "מפתח", "translation": "key", "example": "שכחתי את המפתח בבית." }
+  {
+    "word": "שלום",
+    "translation": "hello",
+    "example": "שלום, מה שלומך היום?",
+    "exampleTranslation": "Hello, how are you today?"
+  },
+  {
+    "word": "ספר",
+    "translation": "book",
+    "example": "קראתי ספר מעניין בשבוע שעבר.",
+    "exampleTranslation": "I read an interesting book last week."
+  },
+  {
+    "word": "בית",
+    "translation": "house",
+    "example": "הבית שלנו נמצא ליד הים.",
+    "exampleTranslation": "Our house is near the sea."
+  },
+  {
+    "word": "מים",
+    "translation": "water",
+    "example": "אני שותה הרבה מים בקיץ.",
+    "exampleTranslation": "I drink a lot of water in the summer."
+  },
+  {
+    "word": "חבר",
+    "translation": "friend",
+    "example": "הוא החבר הכי טוב שלי.",
+    "exampleTranslation": "He is my best friend."
+  },
+  {
+    "word": "עבודה",
+    "translation": "work",
+    "example": "אני נוסע לעבודה ברכבת.",
+    "exampleTranslation": "I take the train to work."
+  },
+  {
+    "word": "אוכל",
+    "translation": "food",
+    "example": "האוכל במסעדה הזאת טעים מאוד.",
+    "exampleTranslation": "The food in this restaurant is very tasty."
+  },
+  {
+    "word": "זמן",
+    "translation": "time",
+    "example": "אין לי זמן לראות טלוויזיה.",
+    "exampleTranslation": "I have no time to watch television."
+  },
+  {
+    "word": "משפחה",
+    "translation": "family",
+    "example": "כל המשפחה נפגשת ביום שישי בערב.",
+    "exampleTranslation": "The whole family gets together on Friday evening."
+  },
+  {
+    "word": "עיר",
+    "translation": "city",
+    "example": "תל אביב היא עיר שלא ישנה.",
+    "exampleTranslation": "Tel Aviv is a city that never sleeps."
+  },
+  {
+    "word": "שמש",
+    "translation": "sun",
+    "example": "השמש זורחת מוקדם בבוקר.",
+    "exampleTranslation": "The sun rises early in the morning."
+  },
+  {
+    "word": "לחם",
+    "translation": "bread",
+    "example": "קניתי לחם טרי במאפייה.",
+    "exampleTranslation": "I bought fresh bread at the bakery."
+  },
+  {
+    "word": "ילד",
+    "translation": "child",
+    "example": "הילד משחק בגינה.",
+    "exampleTranslation": "The child is playing in the garden."
+  },
+  {
+    "word": "רחוב",
+    "translation": "street",
+    "example": "הרחוב הזה שקט בלילה.",
+    "exampleTranslation": "This street is quiet at night."
+  },
+  {
+    "word": "שאלה",
+    "translation": "question",
+    "example": "יש לי שאלה על השיעור.",
+    "exampleTranslation": "I have a question about the lesson."
+  },
+  {
+    "word": "תשובה",
+    "translation": "answer",
+    "example": "המורה נתנה תשובה ברורה.",
+    "exampleTranslation": "The teacher gave a clear answer."
+  },
+  {
+    "word": "מחר",
+    "translation": "tomorrow",
+    "example": "נתראה מחר בבוקר.",
+    "exampleTranslation": "See you tomorrow morning."
+  },
+  {
+    "word": "אהבה",
+    "translation": "love",
+    "example": "השיר הזה מדבר על אהבה.",
+    "exampleTranslation": "This song is about love."
+  },
+  {
+    "word": "חלון",
+    "translation": "window",
+    "example": "תפתח את החלון, חם פה.",
+    "exampleTranslation": "Open the window, it is hot in here."
+  },
+  {
+    "word": "מפתח",
+    "translation": "key",
+    "example": "שכחתי את המפתח בבית.",
+    "exampleTranslation": "I forgot the key at home."
+  }
 ]

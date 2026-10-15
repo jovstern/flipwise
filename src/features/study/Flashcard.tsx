@@ -31,6 +31,7 @@ export function Flashcard({ card, flipped, onFlip }: FlashcardProps) {
               <span lang="he" dir="rtl" className="text-gray-600">
                 {card.example}
               </span>
+              <span className="text-sm text-gray-500">{card.exampleTranslation}</span>
             </>
           )}
         </span>
